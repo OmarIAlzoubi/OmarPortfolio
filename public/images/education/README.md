@@ -1,0 +1,1 @@
+Add the official UPM logo here and configure `portfolioAssets.universityLogo` in `data/assets.ts`. Until then the education card uses a typographic UPM placeholder, not a fabricated university logo.

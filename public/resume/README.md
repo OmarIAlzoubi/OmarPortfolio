@@ -1,0 +1,1 @@
+Add the current PDF here and set `portfolioAssets.resumePdf` in `data/assets.ts`. A Download PDF button then appears on the HTML résumé. The HTML page can already be printed or saved as PDF.
