@@ -8,6 +8,9 @@ const site = process.env.NEXT_PUBLIC_SITE_URL;
 for (const file of ["index.html", "resume/index.html", "404.html", "robots.txt", "sitemap.xml", ".nojekyll", "images/projects/noor-prototype.jpg"]) {
   assert.ok(existsSync(path.join(output, file)), `Missing export: ${file}`);
 }
+for (const file of readdirSync("public/images/certificates").filter((name) => /\.(?:png|jpe?g|webp)$/i.test(name))) {
+  assert.ok(existsSync(path.join(output, "images/certificates", file)), `Missing certificate image: ${file}`);
+}
 assert.ok(!existsSync(path.join(output, "api")), "An API route was exported");
 function files(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((item) => {
@@ -31,6 +34,9 @@ for (const file of files(output)) {
   }
 }
 const home = readFileSync(path.join(output, "index.html"), "utf8");
+const nextAssets = `${prefix}/_next/`;
+assert.ok(home.includes(`href="${nextAssets}`), "Stylesheet URL is missing the Next.js asset path");
+assert.ok(home.includes(`src="${nextAssets}`), "JavaScript URL is missing the Next.js asset path");
 assert.ok(home.includes(`src="${prefix}/images/projects/noor-prototype.jpg"`), "NOOR image path is incorrect");
 assert.ok(home.includes(`href="${prefix}/resume/"`), "Résumé route is incorrect");
 assert.ok(home.includes("without-chat"), "Lite layout is missing");
