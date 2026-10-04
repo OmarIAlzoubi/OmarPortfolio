@@ -67,9 +67,9 @@ export const projects: Project[] = [
     name: "NOOR",
     category: "Multimodal AI · Accessibility",
     status: "Graduation project",
-    title: "Making the visual world audible.",
+    title: "AI that lets everyone see the light.",
     summary:
-      "AI smart glasses designed to assist blind and visually impaired users through scene understanding, object detection, contextual memory, and spoken interaction.",
+      "NOOR translates the visual world into spoken understanding, helping blind and visually impaired users perceive their surroundings through AI.",
     role: "Principal contributor with responsibility for system architecture, the computer-vision pipeline, AI integration, and performance optimization; team leadership in later project organization.",
     architecture:
       "A Raspberry Pi client connects to an inference server. YOLOv8-nano, vision-language models, speech recognition, and contextual memory work together to turn relevant visual information into spoken assistance in Arabic and English.",

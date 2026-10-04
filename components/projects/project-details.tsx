@@ -1,4 +1,5 @@
 import { projectStories } from "@/data/project-details";
+import { CarMindArchitecture, NoorArchitecture } from "./flagship-architectures";
 import { GithubLink } from "./github-link";
 import { Icon } from "@/components/ui/icon";
 export function ProjectDetails({ id, name, role }: { id: string; name: string; role?: string }) {
@@ -16,11 +17,18 @@ export function ProjectDetails({ id, name, role }: { id: string; name: string; r
       <div className="case-study">
         <div className="case-intro">
           <p className="eyebrow">A CLOSER LOOK / {name.toUpperCase()}</p>
-          <h3>
-            From the problem
-            <br />
-            to the system.
-          </h3>
+          {id === "project-noor" ? (
+            <>
+              <h3>AI that lets everyone see the light.</h3>
+              <p className="case-featured-explanation">NOOR translates the visual world into spoken understanding, helping blind and visually impaired users perceive their surroundings through AI.</p>
+            </>
+          ) : (
+            <h3>
+              From the problem
+              <br />
+              to the system.
+            </h3>
+          )}
         </div>
         <div className="case-narrative">
           <div>
@@ -59,6 +67,8 @@ export function ProjectDetails({ id, name, role }: { id: string; name: string; r
           )}
         </div>
         {id === "project-mizanai" && <MizanArchitecture />}
+        {id === "project-noor" && <NoorArchitecture />}
+        {id === "project-carmind" && <CarMindArchitecture />}
         <div className="case-stack">
           <h4>Key technologies</h4>
           <div className="tags">
