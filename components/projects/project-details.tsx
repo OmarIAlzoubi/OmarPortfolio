@@ -58,6 +58,7 @@ export function ProjectDetails({ id, name, role }: { id: string; name: string; r
             </div>
           )}
         </div>
+        {id === "project-mizanai" && <MizanArchitecture />}
         <div className="case-stack">
           <h4>Key technologies</h4>
           <div className="tags">
@@ -75,5 +76,53 @@ export function ProjectDetails({ id, name, role }: { id: string; name: string; r
         </div>
       </div>
     </details>
+  );
+}
+
+function MizanArchitecture() {
+  return (
+    <section className="mizan-architecture" aria-labelledby="mizan-architecture-title">
+      <div className="mizan-architecture-heading">
+        <p className="eyebrow">SYSTEM FLOW / MIZANAI</p>
+        <h4 id="mizan-architecture-title">A clear path from message to answer.</h4>
+        <p>Modular, cost-aware processing keeps language understanding close to the user and exact arithmetic in code.</p>
+      </div>
+
+      <div className="mizan-flow-principle">
+        <span>DESIGN PRINCIPLE</span>
+        <strong>LLM understands.<br />Code calculates.</strong>
+        <small>Use an LLM when language reasoning adds value.</small>
+      </div>
+
+      <ol className="mizan-flow" aria-label="MizanAI message processing flow">
+        <li className="mizan-flow-node mizan-flow-entry"><span>01</span><strong>WhatsApp</strong><small>Message or receipt</small></li>
+        <li className="mizan-flow-node mizan-flow-queue"><span>02</span><strong>Intake + SQS</strong><small>Arrival separated from work</small></li>
+        <li className="mizan-flow-node mizan-flow-worker"><span>03</span><strong>Worker + router</strong><small>Choose the needed path</small></li>
+        <li className="mizan-flow-connector mizan-flow-branch" aria-hidden="true">
+          <span className="connector-trunk" />
+          <span className="connector-bar" />
+          <span className="connector-leg connector-leg-first" />
+          <span className="connector-leg connector-leg-last" />
+        </li>
+        <li className="mizan-flow-split">
+          <div className="mizan-flow-node mizan-flow-ai"><span>AI LAYER</span><strong>Understand</strong><small>Intent, extraction, context</small></div>
+          <div className="mizan-flow-node mizan-flow-deterministic"><span>DETERMINISTIC LAYER</span><strong>Calculate</strong><small>Dates, amounts, balances</small></div>
+        </li>
+        <li className="mizan-flow-connector mizan-flow-convergence" aria-hidden="true">
+          <span className="connector-leg connector-leg-first" />
+          <span className="connector-bar" />
+          <span className="connector-trunk" />
+          <span className="connector-leg connector-leg-last" />
+        </li>
+        <li className="mizan-flow-node mizan-flow-data"><span>04</span><strong>Financial data + analytics</strong><small>Structured operations and relevant context</small></li>
+        <li className="mizan-flow-node mizan-flow-response"><span>05</span><strong>Compose + respond</strong><small>Contextual answer via WhatsApp</small></li>
+      </ol>
+
+      <div className="mizan-architecture-notes">
+        <article><span>01 / AI</span><h5>Language where it helps</h5><p>Intent understanding, transaction extraction, and contextual reasoning, with Grok used where appropriate.</p></article>
+        <article><span>02 / EXACTNESS</span><h5>Deterministic by design</h5><p>Explicit date ranges, arithmetic, balances, and financial calculations stay in structured code.</p></article>
+        <article><span>03 / FLOW</span><h5>Context only when relevant</h5><p>Routing and context selection avoid unnecessary model calls; SQS decouples message arrival from worker processing.</p></article>
+      </div>
+    </section>
   );
 }

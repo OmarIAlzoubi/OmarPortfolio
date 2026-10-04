@@ -1996,3 +1996,274 @@ body {
     display: none;
   }
 }
+
+/* MizanAI system architecture: editorial blocks, with the flow as the visual structure. */
+.mizan-architecture {
+  grid-column: 1 / -1;
+  padding: 30px;
+  border: 1px solid #d6e2e5;
+  background: #fffefa;
+}
+
+.mizan-architecture-heading {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: end;
+  gap: 8px 24px;
+  margin-bottom: 26px;
+}
+
+.mizan-architecture-heading .eyebrow {
+  grid-column: 1 / -1;
+  color: #47718a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.mizan-architecture-heading h4 {
+  max-width: 390px;
+  margin: 0;
+  color: #263e4b;
+  font-size: clamp(21px, 2.4vw, 29px);
+  font-weight: 560;
+  letter-spacing: -0.045em;
+  line-height: 1.15;
+}
+
+.mizan-architecture-heading > p:last-child {
+  max-width: 520px;
+  justify-self: end;
+  margin: 0;
+}
+
+.mizan-flow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.mizan-flow-node {
+  position: relative;
+  display: flex;
+  min-height: 128px;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  border: 1px solid #d6e2e5;
+  background: #f5f8f7;
+}
+
+.mizan-flow-node > span {
+  position: absolute;
+  top: 13px;
+  left: 15px;
+  color: #748a91;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+}
+
+.mizan-flow-node strong {
+  color: #2d4b5b;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.mizan-flow-node small {
+  margin-top: 6px;
+  color: #667a7e;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.mizan-flow-entry { background: #e5f1f4; border-color: #c9dfe5; }
+.mizan-flow-queue { background: #fff4cf; border-color: #e9dba4; }
+.mizan-flow-worker { background: #edf2e7; border-color: #d5dfc9; }
+.mizan-flow-data { background: #e8f2f2; border-color: #cde0df; }
+.mizan-flow-response { background: #fff0e2; border-color: #ead6c3; }
+.mizan-flow-data,
+.mizan-flow-response { grid-column: 2 / span 3; }
+
+.mizan-flow-node:not(.mizan-flow-response)::after {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -13px;
+  width: 13px;
+  color: #8da3a7;
+  content: "→";
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+}
+
+.mizan-flow-worker::after,
+.mizan-flow-split .mizan-flow-node::after { content: none; }
+
+.mizan-flow-data::after {
+  top: auto;
+  right: 50%;
+  bottom: -18px;
+  content: "↓";
+  transform: translateX(50%);
+}
+
+.mizan-flow-principle {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto 18px;
+}
+
+.mizan-flow-connector {
+  position: relative;
+  grid-column: 1 / -1;
+  height: 24px;
+  color: #8da3a7;
+}
+
+.mizan-flow-connector span {
+  position: absolute;
+  display: block;
+  background: currentColor;
+}
+
+.mizan-flow-connector .connector-trunk {
+  left: 50%;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.mizan-flow-branch .connector-trunk { top: -12px; height: calc(50% + 12px); }
+.mizan-flow-convergence .connector-trunk { top: 50%; bottom: -12px; }
+
+.mizan-flow-connector .connector-bar {
+  top: 50%;
+  right: 25%;
+  left: 25%;
+  height: 1px;
+}
+
+.mizan-flow-connector .connector-leg {
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.mizan-flow-branch .connector-leg { top: 50%; bottom: -12px; }
+.mizan-flow-convergence .connector-leg { top: -12px; bottom: 50%; }
+.mizan-flow-connector .connector-leg-first { left: 25%; }
+.mizan-flow-connector .connector-leg-last { left: 75%; }
+
+.mizan-flow-split {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 12px;
+}
+
+.mizan-flow-split > .mizan-flow-node { min-height: 118px; min-width: 0; }
+.mizan-flow-ai { background: #e4f2f4; border-color: #c4dfe4; }
+.mizan-flow-deterministic { background: #fff1c9; border-color: #e8d99f; }
+
+.mizan-flow-principle {
+  display: flex;
+  min-height: 118px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 17px 20px;
+  border-inline: 2px solid #e4c75e;
+  background: #fffaf0;
+  text-align: center;
+}
+
+.mizan-flow-principle > span,
+.mizan-architecture-notes article > span {
+  color: #8c7950;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+}
+
+.mizan-flow-principle strong {
+  margin-top: 8px;
+  color: #3b4b4a;
+  font-size: clamp(16px, 1.9vw, 21px);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.mizan-flow-principle small {
+  margin-top: 8px;
+  color: #71807b;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.mizan-architecture-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.mizan-architecture-notes article {
+  min-width: 0;
+  padding: 17px 18px;
+  border-top: 2px solid #9fc4ce;
+  background: #f5f8f7;
+}
+
+.mizan-architecture-notes article:nth-child(2) { border-color: #e4c75e; }
+.mizan-architecture-notes article:nth-child(3) { border-color: #dfaa7a; }
+
+.mizan-architecture-notes h5 {
+  margin: 9px 0 5px;
+  color: #304a54;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.mizan-architecture-notes p {
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+@media (max-width: 760px) {
+  .mizan-architecture { padding: 22px; }
+  .mizan-architecture-heading { grid-template-columns: 1fr; gap: 10px; }
+  .mizan-architecture-heading .eyebrow { grid-column: auto; }
+  .mizan-architecture-heading > p:last-child { justify-self: start; }
+  .mizan-flow { grid-template-columns: 1fr; gap: 9px; }
+  .mizan-flow-node { min-height: 92px; padding: 15px 16px; }
+  .mizan-flow-data,
+  .mizan-flow-response { grid-column: auto; }
+  .mizan-flow-node:not(.mizan-flow-response)::after {
+    top: auto;
+    right: auto;
+    bottom: -12px;
+    left: 50%;
+    width: auto;
+    content: "↓";
+    transform: translateX(-50%);
+  }
+  .mizan-flow-worker::after,
+  .mizan-flow-split .mizan-flow-node::after { content: none; }
+  .mizan-flow-principle { max-width: none; margin-bottom: 16px; }
+  .mizan-flow-split {
+    grid-column: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+  .mizan-flow-split > .mizan-flow-node { min-height: 112px; }
+  .mizan-flow-branch .connector-trunk { top: -9px; height: calc(50% + 9px); }
+  .mizan-flow-convergence .connector-trunk { bottom: -9px; }
+  .mizan-flow-branch .connector-leg { bottom: -9px; }
+  .mizan-flow-convergence .connector-leg { top: -9px; }
+  .mizan-architecture-notes { grid-template-columns: 1fr; gap: 9px; }
+}
