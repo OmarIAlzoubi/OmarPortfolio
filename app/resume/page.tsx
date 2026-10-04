@@ -1,56 +1,58 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  profile,
-  experience,
-  projects,
-  otherWork,
-  education,
-  certifications,
-  capabilities,
-} from "@/data/portfolio";
 import { contact } from "@/data/contact";
-import { resumeContent } from "@/data/resume";
 import { portfolioAssets } from "@/data/assets";
-import { projectLinks } from "@/data/project-links";
-import { ContactLinks } from "@/components/ui/contact-links";
-import { PrintButton } from "@/components/ui/print-button";
+import { resumeContent } from "@/data/resume";
 import { publicPath } from "@/lib/paths";
 import { getPageUrl } from "@/lib/site";
 import { Icon } from "@/components/ui/icon";
-export const metadata: Metadata = { title: "Résumé", alternates: { canonical: getPageUrl("resume/") } };
+
+export const metadata: Metadata = {
+  title: "Résumé",
+  alternates: { canonical: getPageUrl("resume/") },
+};
+
 export default function Resume() {
   return (
     <main className="resume-page container">
       <div className="resume-toolbar">
         <Link href="/">← Back to portfolio</Link>
         <div>
-          {portfolioAssets.resumePdf && (
-            <a className="button button-secondary" href={publicPath(portfolioAssets.resumePdf)} download>
-              <Icon name="download" /> Download PDF
-            </a>
-          )}
-          <PrintButton />
+          <a
+            className="button button-secondary"
+            href={publicPath(portfolioAssets.resumePdf)}
+            download
+          >
+            <Icon name="download" /> Download PDF
+          </a>
         </div>
       </div>
       <div className="resume-paper">
         <header>
           <p className="eyebrow">PROFESSIONAL PROFILE / {contact.location}</p>
-          <h1>{profile.name}</h1>
+          <h1>{resumeContent.name}</h1>
           <p className="resume-subtitle">{resumeContent.title}</p>
-          <ContactLinks className="resume-contacts" />
+          <div className="contact-links resume-contacts">
+            <a href={contact.phoneHref}>{contact.phone}</a>
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <a href={contact.linkedin} target="_blank" rel="noreferrer">
+              {contact.linkedin.replace(/^https?:\/\//, "")}
+            </a>
+          </div>
+          <p className="eyebrow">Summary</p>
           <p className="resume-summary">{resumeContent.summary}</p>
         </header>
+
         <section>
-          <h2>Experience</h2>
-          {experience.map((job) => (
-            <article key={job.id}>
+          <h2>PROFESSIONAL EXPERIENCE</h2>
+          {resumeContent.experience.map((job) => (
+            <article key={`${job.role}-${job.organization}`}>
               <div className="resume-title">
-                <h3>{job.company}</h3>
+                <h3>
+                  {job.role} | {job.organization}
+                </h3>
                 <span>{job.period}</span>
               </div>
-              <h4>{job.role}</h4>
-              <p>{job.description}</p>
               <ul>
                 {job.highlights.map((item) => (
                   <li key={item}>{item}</li>
@@ -59,80 +61,68 @@ export default function Resume() {
             </article>
           ))}
         </section>
+
         <section>
-          <h2>Selected projects</h2>
-          {projects.map((project) => (
-            <article key={project.id}>
+          <h2>SELECTED PROJECTS &amp; RESEARCH</h2>
+          {resumeContent.projects.map((project) => (
+            <article key={project.title}>
               <div className="resume-title">
                 <h3>
-                  <Link href={`/#${project.id}`}>{project.name}</Link>
+                  {project.title}
+                  {project.context && <> | {project.context}</>}
                 </h3>
-                <span>{project.status}</span>
+                <span>{project.period}</span>
               </div>
-              <p>{project.summary}</p>
-              <p>{project.role}</p>
-              <p className="resume-project-tech">
-                {project.technologies.join(" · ")}
-                {projectLinks[project.id]?.github && (
-                  <>
-                    {" "}
-                    · <a href={projectLinks[project.id].github ?? undefined}>GitHub repository</a>
-                  </>
-                )}
-              </p>
-            </article>
-          ))}
-          {otherWork.map((project) => (
-            <article key={project.id}>
-              <h3>
-                <Link href={`/#${project.id}`}>{project.title}</Link>
-              </h3>
-              <p>{project.description}</p>
-              <p>{project.note}</p>
+              <ul>
+                {project.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </section>
+
         <section>
-          <h2>Technical capabilities</h2>
+          <h2>Education</h2>
+          <article>
+            <div className="resume-title">
+              <h3>
+                {resumeContent.education.degree} | {resumeContent.education.institution}
+              </h3>
+              <span>{resumeContent.education.period}</span>
+            </div>
+          </article>
+        </section>
+
+        <section>
+          <h2>Technical Skills</h2>
           <div className="resume-skills">
-            {capabilities.map((group) => (
-              <div key={group.title}>
-                <h3>{group.title}</h3>
-                <p>{group.items.join(" · ")}</p>
+            {resumeContent.skills.map((group) => (
+              <div key={group.category}>
+                <h3>{group.category}</h3>
+                <p>{group.items}</p>
               </div>
             ))}
           </div>
-          <p className="resume-project-tech">
-            Additional deployment and model tooling: Hugging Face · Ollama · vLLM · Model
-            fine-tuning
-          </p>
         </section>
-        <section>
-          <h2>Education & leadership</h2>
-          <article>
-            <div className="resume-title">
-              <h3>{education.degree}</h3>
-              <span>{education.period}</span>
-            </div>
-            <p>{education.institution}</p>
-            <p>{education.note}</p>
-          </article>
-          {resumeContent.leadership.map((item) => (
-            <article key={item.title}>
-              <div className="resume-title">
-                <h3>{item.title}</h3>
-                <span>{item.year}</span>
-              </div>
-              <p>{item.organization}</p>
-            </article>
-          ))}
-        </section>
+
         <section>
           <h2>Certifications</h2>
           <ul className="resume-certifications">
-            {certifications.map((cert) => (
-              <li key={cert.id}>
-                {cert.name} <span>— {cert.inProgress ? "In progress" : cert.year}</span>
+            {resumeContent.certifications.map((cert) => (
+              <li key={cert.name}>
+                {cert.name} <span>| {cert.issuer} | {cert.year}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2>Honors &amp; Leadership</h2>
+          <ul className="resume-certifications">
+            {resumeContent.honors.map((item) => (
+              <li key={item.title}>
+                {item.title} <span>| {item.organization} | {item.year}</span>
               </li>
             ))}
           </ul>

@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { profile } from "@/data/portfolio";
 import { contact } from "@/data/contact";
 import { ContactLinks } from "@/components/ui/contact-links";
 import { Icon } from "@/components/ui/icon";
+import { publicPath } from "@/lib/paths";
 export function Contact() {
   return (
     <section id="contact" className="section container contact-section">
@@ -37,9 +38,9 @@ export function Contact() {
         </div>
         <div className="contact-bottom">
           <ContactLinks />
-          <Link href="/resume" className="button button-secondary">
+          <a href={publicPath(profile.resume)} className="button button-secondary">
             Read my résumé <Icon name="right" />
-          </Link>
+          </a>
         </div>
       </div>
       <div className="recruiter-faq" data-reveal>
@@ -78,9 +79,9 @@ export function Contact() {
               <Icon name="chevron" />
             </summary>
             <p>
-              The <Link href="/resume">HTML résumé</Link> includes Mabna Tech (Nov 2025 – Sep 2026),
-              KABi, Al-Sham Province Hotels, education, leadership, and selected projects including
-              CarMind. It is designed for printing and saving as PDF.
+              Read the <a href={publicPath(profile.resume)}>PDF résumé</a> for professional
+              experience, selected projects and research, education, technical skills, certifications,
+              and leadership.
             </p>
           </details>
         </div>

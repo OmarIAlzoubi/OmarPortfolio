@@ -3,6 +3,7 @@
  * See CONTENT_SOURCES.md before updating claims or project status.
  */
 import { contact } from "./contact.ts";
+import { portfolioAssets } from "./assets.ts";
 
 export type Project = {
   id: string;
@@ -26,7 +27,7 @@ export const profile = {
   introduction:
     "I connect models, knowledge, and backend engineering to build practical AI products. From agentic workflows to voice and vision, I care about the whole system.",
   ...contact,
-  resume: "/resume",
+  resume: portfolioAssets.resumePdf,
   leadership: "Founded the Artificial Intelligence Club at Prince Muqrin bin Abdulaziz University.",
 };
 

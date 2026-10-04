@@ -1,1 +1,1 @@
-Add the current PDF here and set `portfolioAssets.resumePdf` in `data/assets.ts`. A Download PDF button then appears on the HTML résumé. The HTML page can already be printed or saved as PDF.
+The current résumé source PDF is `Omar_Al-Zoubi_AI_Engineer.pdf`. Its public download path is configured in `data/assets.ts` and shared by all résumé actions. The `/resume/` route remains the designed HTML résumé page.

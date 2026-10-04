@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { profile } from "@/data/portfolio";
+import { publicPath } from "@/lib/paths";
 import { Icon } from "@/components/ui/icon";
 const links = [
   { href: "#selected-work", label: "Work" },
@@ -57,9 +58,9 @@ export function Header() {
           ))}
         </div>
         <div className="nav-actions">
-          <Link href={profile.resume} className="resume-link">
+          <a href={publicPath(profile.resume)} className="resume-link">
             Résumé <Icon name="right" width="13" height="13" />
-          </Link>
+          </a>
           <a href="#contact" className="contact-link">
             Let’s talk <Icon name="right" width="13" height="13" />
           </a>
@@ -82,9 +83,9 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <Link href={profile.resume} onClick={() => setOpen(false)}>
+            <a href={publicPath(profile.resume)} onClick={() => setOpen(false)}>
               View résumé
-            </Link>
+            </a>
             <Link href="/#contact" onClick={() => setOpen(false)}>
               Contact
             </Link>

@@ -1,7 +1,8 @@
-import Link from "next/link";
+import { profile } from "@/data/portfolio";
 import { SkillBands } from "@/components/hero/skill-bands";
 import { Icon } from "@/components/ui/icon";
 import { contact } from "@/data/contact";
+import { publicPath } from "@/lib/paths";
 export function Hero() {
   return (
     <section id="hero" className="hero container">
@@ -19,9 +20,9 @@ export function Hero() {
           <a className="button button-primary" href="#selected-work">
             Explore my work <Icon name="right" />
           </a>
-          <Link className="button button-secondary" href="/resume">
+          <a className="button button-secondary" href={publicPath(profile.resume)}>
             View résumé <Icon name="right" />
-          </Link>
+          </a>
         </div>
         <div className="hero-socials">
           <a href={contact.github} target="_blank" rel="noreferrer">
